@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - AxonFlow AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 4rem auto;">
+    <div class="glass-panel" style="padding: 2rem; text-align: center;">
+        <h2 style="margin-bottom: 2rem;">Welcome Back</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group" style="text-align: left;">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" autofocus required id="id_username">
+            </div>
+            <div class="form-group" style="text-align: left;">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" required id="id_password">
+            </div>
+            <button type="submit" class="glass-button" style="width: 100%; margin-top: 1rem;">Sign In</button>
+        </form>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+            Don't have an account? <a href="{% url 'register' %}" style="color: var(--accent-primary);">Sign Up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

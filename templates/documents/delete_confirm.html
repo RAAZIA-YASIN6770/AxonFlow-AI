@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Document - AxonFlow AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 4rem auto;">
+    <div class="glass-panel" style="padding: 2rem;">
+        <h2 style="margin-bottom: 1.5rem; color: #ef4444;">Delete Document?</h2>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+            Are you sure you want to delete <strong>"{{ document.title }}"</strong>?
+        </p>
+
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">
+            This action cannot be undone. The document and all its associated data will be permanently removed.
+        </p>
+
+        <form method="post" style="display: flex; gap: 1rem;">
+            {% csrf_token %}
+            <button type="submit" class="glass-button"
+                style="background: linear-gradient(135deg, #ef4444, #dc2626); flex: 1;">
+                Yes, Delete
+            </button>
+            <a href="{% url 'document_list' %}" class="glass-button btn-secondary" style="flex: 1; text-align: center;">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

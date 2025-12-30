@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Document - AxonFlow AI{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto;">
+    <div class="glass-panel" style="padding: 2rem;">
+        <h2 style="margin-bottom: 1.5rem;">Upload Document</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div style="color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <button type="submit" class="glass-button">Start Processing</button>
+                <a href="{% url 'document_list' %}" class="glass-button btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

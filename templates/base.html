@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AxonFlow AI{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header class="glass-panel" style="border-radius: 0; border: none; border-bottom: 1px solid var(--card-border);">
+        <div class="brand">AxonFlow AI</div>
+        <nav>
+            {% if user.is_authenticated %}
+            <a href="{% url 'document_list' %}">Documents</a>
+            <a href="{% url 'chat_home' %}">Chat</a>
+            <span style="color: var(--accent-secondary); margin-left:1.5rem;">{{ user.username }}</span>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">{% csrf_token %}<button
+                    type="submit" class="btn-secondary"
+                    style="margin-left:1rem; padding: 0.25rem 0.5rem; font-size: 0.8rem; cursor: pointer;">Logout</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}" class="glass-button" style="padding: 0.5rem 1rem; margin-left: 1rem;">Sign
+                Up</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
+        &copy; 2025 AxonFlow AI. Neural-Powered Knowledge.
+    </footer>
+</body>
+
+</html>

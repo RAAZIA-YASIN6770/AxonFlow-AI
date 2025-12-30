@@ -1,0 +1,9 @@
+Django
+psycopg2-binary
+python-dotenv
+pinecone
+openai
+pypdf
+celery
+redis
+django-celery-beat
